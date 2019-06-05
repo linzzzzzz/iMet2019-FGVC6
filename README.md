@@ -9,7 +9,7 @@
 | Se-resnext50 + aug + 288*288 + (bs==32)  | 0.593  |
 | Se-resnext50 + aug + 288*288 + (bs==64) | 0.604 |
 | Se-resnext50 + aug + 288*288 + (bs==64) + TTA  | 0.615 |
-| Se-resnext50 + aug + 288*288 + 64 + TTA + 5fold | 0.635 |
+| Se-resnext50 + aug + 288*288 + (bs==64) + TTA + 5fold | 0.635 |
 
 
 What worked for me:  
