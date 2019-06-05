@@ -2,6 +2,7 @@
 
 **To run this soulution**:
 
+0. put train/test files in the same file structure as required in kaggle kernels
 1. change variable MODEL_DIR to be the directory where you put se-resnext50 weights file
 2. change variable MODEL_NAME to be the name of se-resnext50 weights file 
 3. run :)
