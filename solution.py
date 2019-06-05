@@ -65,7 +65,7 @@ if use_gpu:
 
 
 
-##### Senext model
+##### Senext model - https://github.com/Cadene/pretrained-models.pytorch/blob/master/pretrainedmodels/models/senet.py
 
 
 class SEModule(nn.Module):
@@ -405,7 +405,7 @@ def se_resnext50(num_classes=1000, pretrained='imagenet'):
     return model
 
 
-
+##### Logger - https://www.kaggle.com/hidehisaarai1213/imet-pytorch-starter
 
 def get_logger(name="Main", tag="exp", log_dir="log/"):
     log_path = Path(log_dir)
@@ -480,6 +480,7 @@ def save_checkpoint(model, path, if_optimizer=False, if_fastai=False):
         
     else:
         
+        # if using fastai, call save func of learner
         model.save(path, with_opt=True)
 
 
@@ -603,7 +604,7 @@ train_name=df_train['id'].unique().tolist()
 
 
 ############
-## trainer and callback
+## trainer and callbacks
 ############
 
 class Trainer:
@@ -644,8 +645,9 @@ class Trainer:
             self.fold_num = i
             
             
+            # if no model gets specified, then use the model structure from fastai
             if model is None:
-                # create dummy cnn_learner to get processed model from fastai
+                # create dummy cnn_learner to get model from fastai
                 tmp_tfms = get_transforms()
 
                 tmp_train = ImageList.from_df(df_train, 
@@ -685,7 +687,6 @@ class Trainer:
                 learn.split(lambda m: (m[1]))
                 
             learn.unfreeze()
-            
             
             
             if warm_start is not None:
