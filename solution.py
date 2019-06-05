@@ -455,18 +455,7 @@ def make_folds(_df, n_folds: int) -> pd.DataFrame:
 ##### Model saving
 
 def save_checkpoint(model, path, if_optimizer=False, if_fastai=False):
-    """Save a PyTorch model checkpoint
 
-    Params
-    --------
-        model (PyTorch model): model to save
-        path (str): location to save model. Must start with `model_name-` and end in '.pth'
-
-    Returns
-    --------
-        None, save the `model` to `path`
-
-    """
     if if_fastai==False:
         
         model_name = path.split('-')[0]
@@ -475,21 +464,11 @@ def save_checkpoint(model, path, if_optimizer=False, if_fastai=False):
     
         # Basic details
         checkpoint = {
-            #'class_to_idx': model.class_to_idx,
-            #'idx_to_class': model.idx_to_class,
             'epochs': model.epochs,
             'history':model.history,
         }
 
-        # Extract the final classifier and the state dictionary
-        if model_name == 'vgg16':
-
-            checkpoint['classifier'] = model.classifier
-            checkpoint['state_dict'] = model.state_dict()
-
-        else:
-
-            checkpoint['state_dict'] = model.state_dict()
+        checkpoint['state_dict'] = model.state_dict()   
 
         if if_optimizer:
             # Add the optimizer
@@ -501,24 +480,12 @@ def save_checkpoint(model, path, if_optimizer=False, if_fastai=False):
         
     else:
         
-        
         model.save(path, with_opt=True)
 
 
 ##### Model loading
 
 def load_checkpoint(path, model=None, if_checkpoint=True, if_optimizer=False, if_finetune=False, if_fastai=True):
-    """Load a PyTorch model checkpoint
-
-    Params
-    --------
-        path (str): saved model checkpoint. Must start with `model_name-` and end in '.pth'
-
-    Returns
-    --------
-        None, save the `model` to `path`
-
-    """
     
     # Get the model name
     model_name = path.split('/')[-1].split('-')[0]
@@ -531,18 +498,7 @@ def load_checkpoint(path, model=None, if_checkpoint=True, if_optimizer=False, if
 
     if model is None:
 
-        if model_name =='vgg16':
-            model = models.vgg16(pretrained=False)
-            # Make sure to set parameters as not trainable
-            for param in model.parameters():
-                param.requires_grad = False
-            model.classifier = checkpoint['classifier']
-        elif model_name == 'vgg16multi':
-            model = vgg_multi_pretrain(models.vgg16(pretrained=False))
-            if if_finetune == False:
-                for param in model.features.parameters():
-                    param.requires_grad = False
-        elif model_name == 'resnet50':
+        if model_name == 'resnet50':
             model = models.resnet50(pretrained=True)
             if if_finetune == False:
                 for param in model.parameters():
@@ -554,6 +510,7 @@ def load_checkpoint(path, model=None, if_checkpoint=True, if_optimizer=False, if
                         ),
                         #torch.nn.Sigmoid()
                     )
+            print('pretrained resnet50 weights have been loaded')
         elif model_name.startswith('se_resnext50'):
             model = se_resnext50()
             weights = torch.load(path)
