@@ -10,7 +10,7 @@
 
 | model         | LB    |
 | ------------- |:--------------------------:|
-| Vgg16 no augmentation | 0.507 |
+| Vgg16 with no augmentation | 0.507 |
 | Resnet50 + aug       | 0.565 |
 | Se-resnext50 + aug + 288*288 + (bs==32)  | 0.593  |
 | Se-resnext50 + aug + 288*288 + (bs==64) | 0.604 |
