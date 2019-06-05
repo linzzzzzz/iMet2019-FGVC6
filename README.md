@@ -22,6 +22,7 @@ What worked for me:
 * a good combination of learning rate and batch size.  
 * larger image size  
 * average prediction from multiple folds
+* test time augmentation
 
 
 What didn't work for me:
