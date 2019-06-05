@@ -2,7 +2,7 @@
 
 **To run this soulution**:
 
-1. change variable MODEL_DIR to be the directory where you put senext50 weights in 
+1. change variable MODEL_DIR to be the directory where you put senext50 weights 
 2. change variable MODEL_NAME to be the name of senext50 weights file 
 3. run :)
 
