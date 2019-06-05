@@ -2,8 +2,8 @@
 
 **To run this soulution**:
 
-1. change variable MODEL_DIR to be the directory where you put senext50 weights 
-2. change variable MODEL_NAME to be the name of senext50 weights file 
+1. change variable MODEL_DIR to be the directory where you put se-resnext50 weights file
+2. change variable MODEL_NAME to be the name of se-resnext50 weights file 
 3. run :)
 
 **LB journey**:
