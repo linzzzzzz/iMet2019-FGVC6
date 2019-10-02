@@ -1,6 +1,6 @@
 # iMet2019-FGVC6
 
-**To run this soulution**:
+**To run this solution**:
 
 0. put train/test files in the same file structure as required in kaggle kernels
 1. change variable MODEL_DIR to be the directory where you put se-resnext50 weights file
